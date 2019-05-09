@@ -24,10 +24,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    
+
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-    
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-mainClassName="com.clare.ben.services.news.NewsApplication"
+//mainClassName="com.clare.ben.services.news.NewsApplication"
+
+war {}
