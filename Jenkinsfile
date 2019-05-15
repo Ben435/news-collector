@@ -15,8 +15,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "./gradlew clean war"
-                target = "build/libs/*.war"
+                sh "./gradlew clean war"    // ends up in `target = "build/libs/*.war"`
             }
         }
 
