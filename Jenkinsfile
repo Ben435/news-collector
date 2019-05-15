@@ -26,7 +26,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                gradleTask("clean", "war")   // ends up in `target = "build/libs/*.war"`
+                // ends up in `target = "build/libs/*.war"`
+                gradleTask("clean", "bootWar")
             }
         }
 

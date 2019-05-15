@@ -31,8 +31,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-//mainClassName="com.clare.ben.services.news.NewsApplication"
-
 war {
     enabled = true
 }
