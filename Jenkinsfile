@@ -8,7 +8,9 @@ pipeline {
 
     stages {
         stage('Checkout code') {
-            git url: 'https://github.com/Ben435/news-collector'
+            steps {
+                checkout changelog: true, poll: true, scm: [$class: 'GitSCM', browser: [$class: 'GithubWeb'], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git', url: 'ssh://git@github.com:Ben435/news-collector']]]
+            }
         }
 
         stage('Build') {
