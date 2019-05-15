@@ -37,12 +37,13 @@ pipeline {
         }
 
         stage('Deploy') {
-            environment {
-                registry = "http://localhost:5000/v2/news"
-            }
 
             steps {
-                docker.build("news-${GIT_BRANCH}-${BUILD_ID}").push('latest')
+                script {
+                    docker.withRegistry('http://localhost:5000/v2/') {
+                        docker.build("news-${GIT_BRANCH}-${BUILD_ID}").push('latest')
+                    }
+                }
             }
         }
     }
