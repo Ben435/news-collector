@@ -7,4 +7,4 @@ EXPOSE 8080
 ADD build/libs/news-*.war news.war
 
 # Run the war file
-ENTRYPOINT ["java","-jar","./news-0.0.1-SNAPSHOT.war"]
+ENTRYPOINT ["java","-jar","./news.war"]
