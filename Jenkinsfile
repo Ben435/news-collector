@@ -10,13 +10,12 @@ pipeline {
         pollSCM('H * * * *') //polling for changes, once per hour.
     }
 
-    stages {
-        stage('Checkout code') {
-            steps {
-                checkout changelog: true, poll: true, scm: [$class: 'GitSCM', browser: [$class: 'GithubWeb'], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'BenGitHub', url: 'git@github.com:Ben435/news-collector.git']]]
-            }
-        }
+    options {
+        timeout(time: 30, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+    }
 
+    stages {
         stage('Build') {
             steps {
                 sh "./gradlew clean war"    // ends up in `target = "build/libs/*.war"`
