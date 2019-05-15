@@ -37,8 +37,11 @@ pipeline {
         }
 
         stage('Deploy') {
+
             steps {
-                sh "echo Deploy step NOT IMPLEMENTED"
+                docker.withRegistry('http://localhost:5000/v2/') {
+                    docker.build("news-${GIT_BRANCH}-${BUILD_ID}").push('latest')
+                }
             }
         }
     }
