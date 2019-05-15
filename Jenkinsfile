@@ -3,7 +3,7 @@ pipeline {
 
     triggers {
         cron('H 0 * * *') //regular builds, approx midnight.
-        pollSCM('0 * * * *') //polling for changes, once per hour.
+        pollSCM('H * * * *') //polling for changes, once per hour.
     }
 
     stages {
