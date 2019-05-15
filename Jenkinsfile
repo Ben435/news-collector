@@ -40,7 +40,7 @@ pipeline {
 
             steps {
                 script {
-                    docker.withRegistry('http://localhost:5000/v2/') {
+                    docker.withRegistry('http://127.0.0.1:5000/v2/') {
                         docker.build("news-${GIT_BRANCH}-${BUILD_ID}").push('latest')
                     }
                 }
