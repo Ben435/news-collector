@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout code') {
             steps {
-                checkout changelog: true, poll: true, scm: [$class: 'GitSCM', browser: [$class: 'GithubWeb'], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'BenGitHub', url: 'ssh://git@github.com:Ben435/news-collector.git']]]
+                checkout changelog: true, poll: true, scm: [$class: 'GitSCM', browser: [$class: 'GithubWeb'], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'BenGitHub', url: 'git@github.com:Ben435/news-collector.git']]]
             }
         }
 
