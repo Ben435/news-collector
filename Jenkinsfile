@@ -3,7 +3,7 @@ def gradleTask(String... tasks) {
         println("Need at least 1 gradle task to run!")
         return
     }
-    sh "./gradlew --no-daemon " + String.join(" ", tasks)
+    sh "./gradlew " + String.join(" ", tasks)
 }
 
 pipeline {
