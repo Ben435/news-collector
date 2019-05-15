@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'openjdk:11.0.3-jdk-stretch'
+        }
+    }
 
     triggers {
         cron('H 0 * * *') //regular builds, approx midnight.
