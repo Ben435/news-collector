@@ -1,3 +1,11 @@
+def gradleTask(String... tasks) {
+    if (tasks.length == 0) {
+        println("Need at least 1 gradle task to run!")
+        return
+    }
+    sh "./gradlew --no-daemon " + String.join(" ", tasks)
+}
+
 pipeline {
     agent {
         docker {
@@ -18,13 +26,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "./gradlew clean war"    // ends up in `target = "build/libs/*.war"`
+                gradleTask("clean", "war")   // ends up in `target = "build/libs/*.war"`
             }
         }
 
         stage('Test') {
             steps {
-                sh "./gradlew test"
+                gradleTask("test")
             }
         }
 
