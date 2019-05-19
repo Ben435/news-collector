@@ -52,7 +52,6 @@ pipeline {
                         docker
                                 .build("${IMAGE_NAME}")
                                 .push()
-                        export IMAGE_NAME=imageName
                         sh "docker stack deploy -c docker-compose.yml news-service --prune --image=${IMAGE_NAME} --with-registry-auth --orchestrator swarm"
                     }
                 }
