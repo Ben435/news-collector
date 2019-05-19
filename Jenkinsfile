@@ -42,12 +42,11 @@ pipeline {
 
             steps {
                 script {
-                    String imageName = "news-${GIT_BRANCH}-${BUILD_ID}";
-                    env
+                    String imageName = "news-${GIT_BRANCH}-${BUILD_ID}:${GIT_COMMIT}";
                     docker.withRegistry('http://127.0.0.1:5000/v2/') {
                         docker
                                 .build(imageName)
-                                .push('latest')
+                                .push()
                         sh "docker service update news-service --image=${imageName} --with-registry-auth"
                     }
                 }
