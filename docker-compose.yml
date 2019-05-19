@@ -3,7 +3,6 @@ version: "3.7"
 services:
   news-service:
     image: ${IMAGE_NAME}
-    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -18,7 +17,7 @@ services:
         delay: 10s
         order: start-first
       restart_policy:
-        condition: always
+        condition: any
 #    healthcheck:
 #      test: ["CMD", "curl", "-f", "http://127.0.0.1"]
 #      interval: 1m30s
