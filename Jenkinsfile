@@ -6,8 +6,6 @@ def gradleTask(String... tasks) {
     sh "./gradlew " + String.join(" ", tasks)
 }
 
-env
-
 pipeline {
     agent {
         docker {
@@ -45,11 +43,12 @@ pipeline {
             steps {
                 script {
                     String imageName = "news-${GIT_BRANCH}-${BUILD_ID}";
+                    env
                     docker.withRegistry('http://127.0.0.1:5000/v2/') {
                         docker
                                 .build(imageName)
                                 .push('latest')
-                        sh "docker service update news-service --image=${imageName}"
+                        sh "docker service update news-service --image=${imageName} --with-registry-auth"
                     }
                 }
             }
