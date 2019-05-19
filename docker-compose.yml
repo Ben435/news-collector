@@ -13,10 +13,13 @@ services:
     deploy:
       replicas: 3
       update_config:
+        failure_action: rollback
+        monitor: 1m
         parallelism: 2
         delay: 10s
+        order: start-first
       restart_policy:
-        condition: on-failure
+        condition: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1"]
       interval: 1m30s
