@@ -7,6 +7,12 @@ def gradleTask(String... tasks) {
 }
 
 pipeline {
+
+    environment {
+        IMAGE_NAME = "news-${GIT_BRANCH}-${BUILD_ID}:${GIT_COMMIT}";
+        EXPOSE_PORT = 80
+    }
+
     agent {
         docker {
             image 'openjdk:11.0.3-jdk-stretch'
@@ -42,12 +48,12 @@ pipeline {
 
             steps {
                 script {
-                    String imageName = "news-${GIT_BRANCH}-${BUILD_ID}:${GIT_COMMIT}";
                     docker.withRegistry('http://127.0.0.1:5000/v2/') {
                         docker
-                                .build(imageName)
+                                .build("${IMAGE_NAME}")
                                 .push()
-                        sh "docker service update news-service --image=${imageName} --with-registry-auth"
+                        export IMAGE_NAME=imageName
+                        sh "docker stack deploy -c docker-compose.yml news-service --prune --image=${IMAGE_NAME} --with-registry-auth --orchestrator swarm"
                     }
                 }
             }

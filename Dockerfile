@@ -1,8 +1,5 @@
 FROM openjdk:11.0.3-jdk-stretch
 
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
-
 # Add the built war to the container
 ADD build/libs/news-*.war news.war
 
