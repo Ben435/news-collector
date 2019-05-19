@@ -10,6 +10,7 @@ pipeline {
     agent {
         docker {
             image 'openjdk:11.0.3-jdk-stretch'
+            args '-v $HOME/.m2:/root/.m2'
         }
     }
 
