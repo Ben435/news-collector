@@ -4,7 +4,6 @@ services:
   news-service:
     image: ${IMAGE_NAME}
     restart: always
-    network_mode: "bridge"
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,9 +19,9 @@ services:
         order: start-first
       restart_policy:
         condition: always
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://127.0.0.1"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://127.0.0.1"]
+#      interval: 1m30s
+#      timeout: 10s
+#      retries: 3
 
