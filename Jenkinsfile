@@ -52,7 +52,7 @@ pipeline {
                         docker
                                 .build("${IMAGE_NAME}")
                                 .push()
-                        sh "docker stack deploy -c docker-compose.yml news-service --prune --image=${IMAGE_NAME} --with-registry-auth --orchestrator swarm"
+                        sh "docker stack deploy -c docker-compose.yml news-service --prune --with-registry-auth --orchestrator swarm"
                     }
                 }
             }
