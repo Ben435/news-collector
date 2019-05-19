@@ -6,8 +6,6 @@ def gradleTask(String... tasks) {
     sh "./gradlew " + String.join(" ", tasks)
 }
 
-String imageName = "news-${GIT_BRANCH}-${BUILD_ID}";
-
 env
 
 pipeline {
@@ -46,6 +44,7 @@ pipeline {
 
             steps {
                 script {
+                    String imageName = "news-${GIT_BRANCH}-${BUILD_ID}";
                     docker.withRegistry('http://127.0.0.1:5000/v2/') {
                         docker
                                 .build(imageName)
