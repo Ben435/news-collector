@@ -10,7 +10,8 @@ pipeline {
 
     environment {
         IMAGE_NAME = "news-${GIT_BRANCH}-${BUILD_ID}:${GIT_COMMIT}";
-        EXPOSE_PORT = 80
+        EXPOSE_HTTP_PORT = 8080
+        EXPOSE_HTTPS_PORT = 8081
     }
 
     agent {
