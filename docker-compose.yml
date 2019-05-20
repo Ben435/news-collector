@@ -7,8 +7,14 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${EXPOSE_HTTP_PORT}:8080"
-      - "${EXPOSE_HTTPS_PORT}:8081"
+      - target: 8080
+        published: ${EXPOSE_HTTP_PORT}
+        protocol: tcp
+        mode: ingress
+#      - target: 8081
+#        published: ${EXPOSE_HTTPS_PORT}
+#        protocol: tcp
+#        mode: ingress
     deploy:
       replicas: 3
       update_config:
