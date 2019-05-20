@@ -16,7 +16,7 @@ services:
 #        protocol: tcp
 #        mode: ingress
     deploy:
-      replicas: 3
+      replicas: 1
       update_config:
         failure_action: rollback
         monitor: 1m
