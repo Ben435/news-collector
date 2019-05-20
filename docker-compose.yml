@@ -10,7 +10,7 @@ services:
       - target: 8080
         published: ${EXPOSE_HTTP_PORT}
         protocol: tcp
-        mode: ingress
+        mode: host
 #      - target: 8081
 #        published: ${EXPOSE_HTTPS_PORT}
 #        protocol: tcp
